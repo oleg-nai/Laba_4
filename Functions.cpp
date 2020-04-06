@@ -34,7 +34,7 @@ ostream& operator << (ostream& os, TakeBooks& A)	// method of insert, operator o
 	cout << "address: "		<< A.address	<< endl;
 	cout << "count:\t "		<< A.count		<< endl;
 
-	ofstream out("TakeBooks.txt"); // stream for recording
+	ofstream out; // stream for recording
 	
 	out.open("TakeBooks.txt", ios::app); // open file for recording
 	if (out.is_open() != true)
@@ -130,7 +130,7 @@ istream& operator >> (istream& os, NotReturnBooks& A)	// method of insert, opera
 		{
 			cout << "count:\t ";	cin >> A.count;
 			if (cin.fail())
-				throw "\tYou've written wrong number/symbol, try again";
+				throw "\nYou've written wrong number/symbol, try again";
 			repeat = false;
 		}
 		catch (const char* ex)
@@ -203,6 +203,114 @@ bool operator == (const NotReturnBooks a, const NotReturnBooks r)
 }
 
 // --------------------------------------------------------------------------------------
-//										NotReturnBooks
+//										Class Student
 // --------------------------------------------------------------------------------------
 
+
+
+template<class T>
+void Student<T>::OutputDataBinary(char* path)
+{
+	fstream out;
+	out.open(path, ofstream::out | ofstream::binary);
+	if (!out.is_open())
+	{
+		cout << "Open file failed.\n";
+	}
+	else
+	{
+		int i = 0;
+		while (i < count)
+		{
+			out.write((char*)&M[i], sizeof(T));
+			i++;
+		}
+		out.close();
+	}
+}
+
+template<class T>
+void Student<T>::OutputTextData(char* s) // output in text file
+{
+	fstream out;
+	out.open(s, ofstream::out);
+	if (!out.is_open())
+	{
+		cout << "Open file failed.\n";
+	}
+	else
+	{
+		int i = 0;
+		while (i < count)
+		{
+			out << M[i];
+			i++;
+		}
+		out.close();
+	}
+}
+
+template<class T>
+void Student<T>::InputBinaryData(char*path)
+{
+	fstream in;
+	in.open(path, ofstream::in | ofstream::binary);
+	if (!in.is_open())
+	{
+		cout << "Open file failed.\n";
+	}
+	else
+	{
+		M = new T[100];
+		int i = 0;
+		in.seekg(0, ios::beg);
+
+		while (!in.eof())
+		{
+			in.read((char*)&M[i], sizeof(T));
+			i++;
+		}
+		count = i - 1;
+		in.close();
+	}
+}
+//
+//template<class T>
+//void Student<T>::InputTextData(string path)
+//{
+//	fstream in;
+//	in.open(path, ofstream::in);
+//	if (!in.is_open())
+//	{
+//		cout << "Open file failed.\n";
+//	}
+//	else
+//	{
+//		M = new T[100];
+//		int i = 0;
+//		in.seekg(0, ios::beg);
+//
+//		while (!in.eof())
+//		{
+//			in >> M[i];
+//			i++;
+//		}
+//		count = i - 1;
+//		in.close();
+//	}
+//}
+//
+//istream& operator>>(istream& os, Student& m)
+//{
+//	int n;
+//	cout << "vvedi count: ";
+//	os >> n;
+//	Student x(n);
+//	m = x;
+//	for (int i = 0; i < n; i++)
+//	{
+//		cout << "vvedi element:";
+//		os >> m[i];//(12)
+//	}
+//	return os;
+//}
