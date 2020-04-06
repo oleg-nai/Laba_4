@@ -1,17 +1,17 @@
 #pragma once
 #include <iostream>
 #include <fstream>
-#include <string.h>
+#include <string>
 #include <stdio.h>
 #include <stdlib.h> 
 #include <search.h>
 #include <string>
+#include <cstring>
 
 #define _CRT_SECURE_NO_WARNINGS
 #pragma warning(disable:4996)
 
 using namespace std;
-
 
 struct TakeBooks		// Container1 «Студенты, взявшие книги в библиотеке БГУ»,
 {
@@ -57,7 +57,7 @@ public:
 	int count;
 	T* M;
 
-	Student(void): M(new T[sizeof(T)]), count(NULL) {}	// default constructor
+	Student(void): M(new T[100]), count(NULL) {}	// default constructor
 	Student(Student <T> & r)	// copy constructor (A(B))
 	{
 		count = r.count;
@@ -71,39 +71,76 @@ public:
 
 	void Input()
 	{
+		count++;
 		cin >> *M;
 	}
 
 	int GetCount(void)		{return count;}
 	void SetCount(int k)	{count = k;}
 
+
+
 	void OutputDataBinary(char*);	// output binary
 	void OutputTextData(char*);		// output in text file
 
 	void InputBinaryData(char*);	// input from binary file
+
 	void InputTextData(string path)	// input from text stream (ввод из текстового потока)
-	{
-		fstream in;
-		in.open(path, ofstream::in);
+	{		
+		ifstream in;
+		in.open(path);
 		if (!in.is_open())
 		{
 			cout << "Open file failed.\n";
 		}
 		else
 		{
+			char* line = new char[256], * simbol = new char[256], * pch;
+			strcpy(simbol, ";: ");
 			M = new T[100];
-			int i = 0;
-			in.seekg(0, ios::beg);
+			int i = 0, j = 0;
 
 			while (!in.eof())
 			{
-				in >> M[i];
+
+				in.getline(line,256);
+				pch = strtok(line, simbol);
+				try
+				{
+					while (pch != NULL)
+					{
+						if (j == 0)
+							strcpy(M[i].name, pch);
+						if (j == 1)
+							strcpy(M[i].address, pch);
+						if (j == 2)
+						{
+							if (atoi(pch) == 0)
+								throw;
+							M[i].count = atoi(pch);
+						}
+						if (j == 3)
+						{
+							if ((double)atof(pch) == 0)
+								throw;
+							M[i].price = (double)atof(pch);
+						}
+						j++;
+						pch = strtok(NULL, simbol); // берет следующее значение в строке
+					}
+				}
+				catch(...)
+				{
+					cout << "Error reading file! Chech " << i << " line and " << j << " word" << endl;
+				}
 				i++;
+				j = 0;
 			}
-			count = i - 1;
+			count = i;
 			in.close();
-		}
+		}	
 	}
+
 
 
 	/*void Print(string)
@@ -114,6 +151,7 @@ public:
 //	friend istream& operator >> (istream&, Student<T>&);
 
 };
+
 
 //template <class T> class Formatter
 //{

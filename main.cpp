@@ -13,10 +13,12 @@ int main(void)
 	//Kirill.Print();
 
 	Student<NotReturnBooks>Oleg;
-	Oleg.Input();
-	cout << *Oleg.M;
-	Oleg.InputTextData("test.txt");
 
+	Oleg.InputTextData("test.txt");
+	
+	cout << Oleg.M[1];
+	
+	
 	//TakeBooks Oleg, Kirill;
 	//cin >> Oleg >> Kirill;
 	//cout << Oleg << Kirill;

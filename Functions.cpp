@@ -118,48 +118,48 @@ bool operator == (const ReturnBooks a, const ReturnBooks r)
 //										NotReturnBooks
 // --------------------------------------------------------------------------------------
 
-istream& operator >> (istream& os, NotReturnBooks& A)	// method of insert, operator overload >> like friendly functions	
-{
-	cin.ignore();
-	cout << "name:\t ";		cin.getline(A.name, 50);
-	cout << "address: ";	cin.getline(A.address, 50);
-	bool repeat = false;
-	do
-	{
-		try
-		{
-			cout << "count:\t ";	cin >> A.count;
-			if (cin.fail())
-				throw "\nYou've written wrong number/symbol, try again";
-			repeat = false;
-		}
-		catch (const char* ex)
-		{
-			repeat = true;
-			cout << ex << endl;
-			cin.clear();			// return cin to 'normal' mode
-			cin.ignore(32767, '\n');// delete the values of the previous input from the input buffer
-		}
-	} while (repeat == true);
-
-	do
-	{
-		try
-		{
-			cout << "price:\t ";	cin >> A.price;
-			if (cin.fail())
-				throw "\tYou've written wrong number/symbol, try again";
-			cout << "\n";
-			return os;
-		}
-		catch (const char* ex)
-		{
-			cout << ex << endl;
-			cin.clear();			// return cin to 'normal' mode
-			cin.ignore(32767, '\n');// delete the values of the previous input from the input buffer
-		}
-	} while (true);
-}
+//istream& operator >> (istream& os, NotReturnBooks& A)	// method of insert, operator overload >> like friendly functions	
+//{
+//	cin.ignore();
+//	cout << "name:\t ";		cin.getline(A.name, 50);
+//	cout << "address: ";	cin.getline(A.address, 50);
+//	bool repeat = false;
+//	do
+//	{
+//		try
+//		{
+//			cout << "count:\t ";	cin >> A.count;
+//			if (cin.fail())
+//				throw "\nYou've written wrong number/symbol, try again";
+//			repeat = false;
+//		}
+//		catch (const char* ex)
+//		{
+//			repeat = true;
+//			cout << ex << endl;
+//			cin.clear();			// return cin to 'normal' mode
+//			cin.ignore(32767, '\n');// delete the values of the previous input from the input buffer
+//		}
+//	} while (repeat == true);
+//
+//	do
+//	{
+//		try
+//		{
+//			cout << "price:\t ";	cin >> A.price;
+//			if (cin.fail())
+//				throw "\tYou've written wrong number/symbol, try again";
+//			cout << "\n";
+//			return os;
+//		}
+//		catch (const char* ex)
+//		{
+//			cout << ex << endl;
+//			cin.clear();			// return cin to 'normal' mode
+//			cin.ignore(32767, '\n');// delete the values of the previous input from the input buffer
+//		}
+//	} while (true);
+//}
 
 ostream& operator << (ostream& os, NotReturnBooks& A)	// method of insert, operator overload >> like friendly functions	
 {
@@ -274,7 +274,7 @@ void Student<T>::InputBinaryData(char*path)
 		in.close();
 	}
 }
-//
+
 //template<class T>
 //void Student<T>::InputTextData(string path)
 //{
@@ -299,6 +299,9 @@ void Student<T>::InputBinaryData(char*path)
 //		in.close();
 //	}
 //}
+
+
+
 //
 //istream& operator>>(istream& os, Student& m)
 //{
