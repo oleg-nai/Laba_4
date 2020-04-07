@@ -34,9 +34,9 @@ istream& operator >> (istream& os, TakeBooks& A)	// method of insert, operator o
 
 ostream& operator << (ostream& os, TakeBooks& A)	// method of insert, operator overload >> like friendly functions	
 {
-	cout << "name:\t " << A.name << endl;
-	cout << "address: " << A.address << endl;
-	cout << "count:\t " << A.count << endl;
+	os << "name:\t " << A.name << endl;
+	os << "address: " << A.address << endl;
+	os << "count:\t " << A.count << endl;
 	return os;
 	//ofstream out; // stream for recording
 	//out.open("TakeBooks.txt", ios::app); // open file for recording
@@ -87,8 +87,8 @@ istream& operator >> (istream& os, ReturnBooks& A)	// method of insert, operator
 
 ostream& operator << (ostream& os, ReturnBooks& A)	// method of insert, operator overload >> like friendly functions	
 {
-	cout << "name:\t " << A.name << endl;
-	cout << "address: " << A.address << endl;
+	os << "name:\t " << A.name << endl;
+	os << "address: " << A.address << endl;
 	return os;
 	//ofstream out; // stream for recording
 	//out.open("ReturnBooks.txt", ios::app); // open file for recording
@@ -171,10 +171,10 @@ istream& operator >> (istream& os, NotReturnBooks& A)	// method of insert, opera
 
 ostream& operator << (ostream& os, NotReturnBooks& A)	// method of insert, operator overload >> like friendly functions	
 {
-	cout << "name:\t " << A.name << endl;
-	cout << "address: " << A.address << endl;
-	cout << "count:\t " << A.count << endl;
-	cout << "price:\t" << A.price << endl;
+	os << "name:\t " << A.name << endl;
+	os << "address: " << A.address << endl;
+	os << "count:\t " << A.count << endl;
+	os << "price:\t" << A.price << endl;
 	return os;
 	//ofstream out; // stream for recording
 	//out.open("NotReturnBooks.txt", ios::app); // open file for recording
@@ -214,48 +214,48 @@ bool operator == (const NotReturnBooks a, const NotReturnBooks r)
 
 
 
-template<class T>
-void Student<T>::OutputDataBinary(char* path)
-{
-	fstream out;
-	out.open(path, ofstream::out | ofstream::binary);
-	if (!out.is_open())
-	{
-		cout << "Open file failed.\n";
-	}
-	else
-	{
-		int i = 0;
-		while (i < count)
-		{
-			out.write((char*)&M[i], sizeof(T));
-			i++;
-		}
-		out.close();
-	}
-}
-
-template<class T>
-void Student<T>::InputBinaryData(char* path)
-{
-	fstream in;
-	in.open(path, ofstream::in | ofstream::binary);
-	if (!in.is_open())
-	{
-		cout << "Open file failed.\n";
-	}
-	else
-	{
-		M = new T[100];
-		int i = 0;
-		in.seekg(0, ios::beg);
-
-		while (!in.eof())
-		{
-			in.read((char*)&M[i], sizeof(T));
-			i++;
-		}
-		count = i - 1;
-		in.close();
-	}
-}
+//template<class T>
+//void Student<T>::OutputDataBinary(char* path)
+//{
+//	fstream out;
+//	out.open(path, ofstream::out | ofstream::binary);
+//	if (!out.is_open())
+//	{
+//		cout << "Open file failed.\n";
+//	}
+//	else
+//	{
+//		int i = 0;
+//		while (i < count)
+//		{
+//			out.write((char*)&M[i], sizeof(T));
+//			i++;
+//		}
+//		out.close();
+//	}
+//}
+//
+//template<class T>
+//void Student<T>::InputBinaryData(char* path)
+//{
+//	fstream in;
+//	in.open(path, ofstream::in | ofstream::binary);
+//	if (!in.is_open())
+//	{
+//		cout << "Open file failed.\n";
+//	}
+//	else
+//	{
+//		M = new T[100];
+//		int i = 0;
+//		in.seekg(0, ios::beg);
+//
+//		while (!in.eof())
+//		{
+//			in.read((char*)&M[i], sizeof(T));
+//			i++;
+//		}
+//		count = i - 1;
+//		in.close();
+//	}
+//}

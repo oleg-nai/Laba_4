@@ -29,17 +29,19 @@ int main(void)
 {
 
 	Student<NotReturnBooks> firstCourse;
-	firstCourse.InputTextData("NotReturnBooks.txt");
-	firstCourse.OutputTextData();
-
+	firstCourse.InputTextData("NotReturnBooksInput.txt");
+	firstCourse.OutputTextConsole();
+	firstCourse.OutputTextFile("NotReturnBooksOutput.txt");
 
 	Student<TakeBooks> secondCourse;
-	secondCourse.InputTextData("TakeBooks.txt");
-	secondCourse.OutputTextData();
+	secondCourse.InputTextData("TakeBooksInput.txt");
+	secondCourse.OutputTextConsole();
+	secondCourse.OutputTextFile("TakeBooksOutput.txt");
 
 	Student<ReturnBooks> thirdCourse;
-	thirdCourse.InputTextData("ReturnBooks.txt");
-	thirdCourse.OutputTextData();
+	thirdCourse.InputTextData("ReturnBooksInput.txt");
+	thirdCourse.OutputTextConsole();
+	secondCourse.OutputTextFile("ReturnBooksOutput.txt");
 
 	return 0;
 

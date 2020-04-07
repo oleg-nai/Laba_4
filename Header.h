@@ -73,28 +73,51 @@ public:
 	int GetCount(void) { return count; }
 	void SetCount(int k) { count = k; }
 
-	void OutputDataBinary(char*);	// output binary
-	void InputBinaryData(char*);	// input from binary file
-	void OutputTextData(void)		// output in text file (вывод на консоль массива данных перегрузка оператора)
+	void InputBinaryData(char*)			// input from binary file
+	{
+
+
+	}
+
+
+	void OutputTextFile(string path)	// вывод в текстовый поток (файл) массива данных )
+	{
+		ofstream out;
+		out.open(path);
+		if (!out.is_open())
+			cout << "Open file failed.\n";
+		else
+		{
+			out << "number of class objects: " << count << endl;
+			int i = 0;
+			while (i != count)
+			{
+				out << M[i] << endl;
+				i++;
+			}
+			out << "--------------------------------------------------------------------------------------" << endl;
+
+		}
+	}
+
+	void OutputTextConsole(void)		// output in text file (вывод на консоль массива данных)
 	{
 		cout << "number of class objects: " << count << endl;
-		int i = count -1;
-		while (i != -1)
+		int i = 0;
+		while (i != count)
 		{
 			cout << M[i] << endl;
-			i--;
+			i++;
 		}
 		printf("--------------------------------------------------------------------------------------\n");
 	}
 
-	void InputTextData(string path)	// input from text stream (ввод из текстового потока)
+	void InputTextData(string path)		// input from text stream (ввод из текстового потока)
 	{
 		ifstream in;
 		in.open(path);
 		if (!in.is_open())
-		{
 			cout << "Open file failed.\n";
-		}
 		else
 		{
 			M = new T[100];
