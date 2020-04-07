@@ -10,7 +10,6 @@
 
 #define _CRT_SECURE_NO_WARNINGS
 #pragma warning(disable:4996)
-
 using namespace std;
 
 struct TakeBooks		// Container1 «Студенты, взявшие книги в библиотеке БГУ»,
@@ -78,12 +77,22 @@ public:
 	int GetCount(void)		{return count;}
 	void SetCount(int k)	{count = k;}
 
-
-
 	void OutputDataBinary(char*);	// output binary
-	void OutputTextData(char*);		// output in text file
 
 	void InputBinaryData(char*);	// input from binary file
+
+	void OutputTextData(void)		// output in text file (вывод на консоль массива данных перегрузка оператора)
+	{
+		int i = count;
+		while (i > 0)
+		{
+			cout << M[i] << endl;
+			i--;
+		}
+		cout << "number of class objects: " << count << endl;
+	}
+
+
 
 	void InputTextData(string path)	// input from text stream (ввод из текстового потока)
 	{		
@@ -96,34 +105,57 @@ public:
 		else
 		{
 			char* line = new char[256], * simbol = new char[256], * pch;
+			string kindOfStruct = (string)typeid(M).name();
 			strcpy(simbol, ";: ");
 			M = new T[100];
 			int i = 0, j = 0;
 
 			while (!in.eof())
 			{
-
 				in.getline(line,256);
 				pch = strtok(line, simbol);
 				try
 				{
 					while (pch != NULL)
 					{
-						if (j == 0)
-							strcpy(M[i].name, pch);
-						if (j == 1)
-							strcpy(M[i].address, pch);
-						if (j == 2)
+						if (kindOfStruct == "struct NotReturnBooks")
 						{
-							if (atoi(pch) == 0)
-								throw;
-							M[i].count = atoi(pch);
+							if (j == 0)
+								strcpy(M[i].name, pch);
+							else if (j == 1)
+								strcpy(M[i].address, pch);
+							else if (j == 2)
+							{
+								if (atoi(pch) == 0)		// number check
+									throw;
+								M[i].count = atoi(pch);	
+							}
+							else if (j == 3)
+							{
+								if ((double)atof(pch) == 0)	// number check
+									throw;
+								M[i].price = (double)atof(pch);
+							}
 						}
-						if (j == 3)
+						else if (kindOfStruct == "struct ReturnBooks")
 						{
-							if ((double)atof(pch) == 0)
-								throw;
-							M[i].price = (double)atof(pch);
+							if (j == 0)
+								strcpy(M[i].name, pch);
+							else if (j == 1)
+								strcpy(M[i].address, pch);
+							else if (j == 2)
+							{
+								if (atoi(pch) == 0)
+									throw;
+								M[i].count = atoi(pch);
+							}
+						}
+						else if (kindOfStruct == "struct TakeBooks")
+						{
+							if (j == 0)
+								strcpy(M[i].name, pch);
+							else if (j == 1)
+								strcpy(M[i].address, pch);
 						}
 						j++;
 						pch = strtok(NULL, simbol); // берет следующее значение в строке
@@ -136,7 +168,7 @@ public:
 				i++;
 				j = 0;
 			}
-			count = i;
+			count = i-1;
 			in.close();
 		}	
 	}
