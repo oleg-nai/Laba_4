@@ -81,6 +81,5 @@ int main(void)
 	firstCourse.Cheaker(secondCourse, thirdCourse);
 	firstCourse.OutputTextConsole();
 
-
 	return 0;
 }
