@@ -231,9 +231,16 @@ NotReturnBooks& NotReturnBooks::operator = (const NotReturnBooks& r)
 	return *this;
 }
 
-bool operator == (const NotReturnBooks a, const NotReturnBooks r)
+bool operator == (const NotReturnBooks a, const TakeBooks r)
 {
-	if ((strcmp(a.name, r.name) == 0) && (strcmp(a.address, r.address) == 0) && (a.count == r.count) && (a.price == r.price))
+	if ((strcmp(a.name, r.name) == 0) && (strcmp(a.address, r.address) == 0))
+		return true;
+	else
+		return false;
+}
+bool operator != (const NotReturnBooks a, const ReturnBooks r)
+{
+	if ((strcmp(a.name, r.name) != 0) && (strcmp(a.address, r.address) != 0))
 		return true;
 	else
 		return false;
@@ -246,71 +253,7 @@ bool operator == (const NotReturnBooks a, const NotReturnBooks r)
 
 
 
-//template<class T>
-//void Student<T>::OutputDataBinary(char* path)
-//{
-//	fstream out;
-//	out.open(path, ofstream::out | ofstream::binary);
-//	if (!out.is_open())
-//	{
-//		cout << "Open file failed.\n";
-//	}
-//	else
-//	{
-//		int i = 0;
-//		while (i < count)
-//		{
-//			out.write((char*)&M[i], sizeof(T));
-//			i++;
-//		}
-//		out.close();
-//	}
-//}
-//
-//template<class T>
-//void Student<T>::InputBinaryData(char* path)
-//{
-//	fstream in;
-//	in.open(path, ofstream::in | ofstream::binary);
-//	if (!in.is_open())
-//	{
-//		cout << "Open file failed.\n";
-//	}
-//	else
-//	{
-//		M = new T[100];
-//		int i = 0;
-//		in.seekg(0, ios::beg);
-//
-//		while (!in.eof())
-//		{
-//			in.read((char*)&M[i], sizeof(T));
-//			i++;
-//		}
-//		count = i - 1;
-//		in.close();
-//	}
-//}
 
-
-
-//template<class T1, class T2>
-//void Raznost(STUD<T1>& x, STUD<T2>& y)
-//{
-//	int k = 0;
-//	bool b;
-//	cout << endl << "---------------RAZNOST-----------" << endl << endl;
-//	for (int i = 0; i < x.GetCount(); i++)
-//	{
-//		…
-//			for (int j = 0; j < y.GetCount(); j++)
-//				if (x[i] == y[j]) b = 0; //(2)
-//		if (b)
-//		{
-//			M[k].Prisv(x[i]); //(33)
-//			…
-//		}
-//	}
-//	count = k;
-//
-//}
+// --------------------------------------------------------------------------------------
+//										Second function - template
+// --------------------------------------------------------------------------------------

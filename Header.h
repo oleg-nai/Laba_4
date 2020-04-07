@@ -52,8 +52,30 @@ public:
 	friend istream& operator >> (istream&, NotReturnBooks&);	// method of insert, operator overload >> like friendly functions
 	friend ostream& operator << (ostream&, NotReturnBooks&);	// method of insert, operator overload << like friendly functions
 	NotReturnBooks& operator = (const NotReturnBooks&);
-	friend bool operator == (const NotReturnBooks, const NotReturnBooks);
+	friend bool operator == (const NotReturnBooks, const TakeBooks);
+	friend bool operator != (const NotReturnBooks, const ReturnBooks);
+
+
 };
+
+template<class T>
+void Search(T& r)
+{
+	cout << "\nSearching for studends\n";
+	int k = 0;
+	cout << "Enter the number of books: ";
+	cin >> k;
+	cout << "\nSearching for studends, who have more then " << k << " books" << endl << endl;
+	int i = 0;
+	while (i < r.count)
+	{
+		if (r.M[i] > k)
+			cout << r.M[i] << endl;
+		i++;
+	}
+};
+	
+
 
 
 template<class T>
@@ -72,9 +94,6 @@ public:
 	{
 		delete[] M;	count = 0;
 	}
-
-	int GetCount(void) { return count; }
-	void SetCount(int k) { count = k; }
 
 	void OutputBinaryData(string path)	// output in binary text file (вывод в бинарный поток (файл) массива данных)
 	{
@@ -255,26 +274,43 @@ public:
 				}
 			}
 	}
-	void Search()
-	{
-		cout << "\nSearching for studends\n";
-		int k = 0;
-		cout << "Enter the number of books: "; cin >> k;
-		cout << "\nSearching for studends, who take more then " << k <<" books" <<  endl << endl;
-		int i = 0;
-		while (i < count)
-		{
-			if (M[i] > k)
-				cout << M[i] << endl;
-			i++;
-		}
-
-	}
-
-
-	//friend ostream& operator << (ostream& os, Student& r)	// method of insert, operator overload << like friendly functions
-	//{
-	//	os << r.M;
-	//}
 	
+	//void Search()
+	//{
+	//	cout << "\nSearching for studends\n";
+	//	int k = 0;
+	//	cout << "Enter the number of books: "; cin >> k;
+	//	cout << "\nSearching for studends, who take more then " << k <<" books" <<  endl << endl;
+	//	int i = 0;
+	//	while (i < count)
+	//	{
+	//		if (M[i] > k)
+	//			cout << M[i] << endl;
+	//		i++;
+	//	}
+	//}
+
+	// R.function(K,M); //Функция внутри класса-шаблона 
+	template<class T1, class T2>
+	void Cheaker(const Student<T1>& a, const Student<T2>&b)	// a - Container1(TakeBooks), b - Container2(ReturnBooks), NotReturnBooks = TakeBooks, NotReturnBooks != ReturnBooks 
+	{
+		Student<NotReturnBooks> last;
+		int q = 0;
+		for (int i = 0; i < count; i++)
+		{
+			for (int j = 0; j < a.count; j++)
+			{
+				for (int k = 0; k < b.count; k++)
+				{
+					if (M[i] == a.M[j] && M[i] != b.M[k])
+					{
+						last.M[q++] = M[i];
+						break;
+					}
+				}
+			}
+		}
+		last.count = q-1;
+		*this = last;
+	}
 };
