@@ -28,12 +28,15 @@
 int main(void)
 {
 
-	Student<NotReturnBooks> firstCourse;
+	Student<NotReturnBooks> firstCourse, testCourse;
 	firstCourse.InputTextData("NotReturnBooksInput.txt");
 	firstCourse.OutputTextConsole();
 	firstCourse.OutputTextFile("NotReturnBooksOutput.txt");
 	firstCourse.OutputBinaryData("NotReturnBooksOutputBinaryData.txt");
-
+	testCourse = firstCourse;
+	cout << "This is check for operator =\n";
+	testCourse.OutputTextConsole();
+	cout << testCourse[1];
 
 	Student<TakeBooks> secondCourse;
 	secondCourse.InputTextData("TakeBooksInput.txt");

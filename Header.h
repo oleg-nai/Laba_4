@@ -55,10 +55,9 @@ public:
 template<class T>
 class Student
 {
-private:
+public:
 	int count;
 	T* M;
-public:
 	Student(void) : M(new T[100]), count(NULL) {}	// default constructor
 	Student(Student <T>& r)	// copy constructor (A(B))
 	{
@@ -92,8 +91,6 @@ public:
 			out.close();
 		}
 	}
-
-
 	void OutputTextFile(string path)	// output in text file (вывод в текстовый поток (файл) массива данных)
 	{
 		ofstream out;
@@ -112,7 +109,6 @@ public:
 			out << "--------------------------------------------------------------------------------------" << endl;
 		}
 	}
-
 	void OutputTextConsole(void)		// output in console (вывод на консоль массива данных)
 	{
 		cout << "number of class objects: " << count << endl;
@@ -124,7 +120,6 @@ public:
 		}
 		printf("--------------------------------------------------------------------------------------\n");
 	}
-
 	void InputTextData(string path)		// input from text stream (ввод из текстового потока)
 	{
 		ifstream in;
@@ -225,4 +220,25 @@ public:
 	*/
 	}
 
+	Student& operator = (const Student& r)
+	{
+		int i = 0;
+		while (i < r.count)
+		{
+			M[i] = r.M[i];
+			i++;
+		}
+		count = r.count;
+		return *this;
+	}
+	T& operator [] (int index)
+	{
+		return M[index];
+	}
+
+	//friend ostream& operator << (ostream& os, Student& r)	// method of insert, operator overload << like friendly functions
+	//{
+	//	os << r.M;
+	//}
+	
 };
