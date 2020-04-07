@@ -68,6 +68,23 @@ bool operator == (const TakeBooks a, const TakeBooks r)
 		return false;
 }
 
+bool operator < (const TakeBooks a, int k)
+{
+	if (a.count < k)
+		return true;
+	return false;
+}
+
+bool operator > (const TakeBooks a, int k)
+{
+	if (a.count > k)
+		return true;
+	return false;
+}
+
+
+
+
 // --------------------------------------------------------------------------------------
 //										ReturnBooks
 // --------------------------------------------------------------------------------------
@@ -116,6 +133,20 @@ bool operator == (const ReturnBooks a, const ReturnBooks r)
 		return true;
 	else
 		return false;
+}
+
+bool operator < (const ReturnBooks a, const ReturnBooks b)
+{
+	if (strcmp(a.address, b.address) < 0)
+		return true;
+	return false;
+}
+
+bool operator > (const ReturnBooks a, const ReturnBooks b)
+{
+	if (strcmp(a.address, b.address) > 0)
+		return true;
+	return false;
 }
 
 // --------------------------------------------------------------------------------------
@@ -208,6 +239,7 @@ bool operator == (const NotReturnBooks a, const NotReturnBooks r)
 		return false;
 }
 
+
 // --------------------------------------------------------------------------------------
 //										Class Student
 // --------------------------------------------------------------------------------------
@@ -258,4 +290,27 @@ bool operator == (const NotReturnBooks a, const NotReturnBooks r)
 //		count = i - 1;
 //		in.close();
 //	}
+//}
+
+
+
+//template<class T1, class T2>
+//void Raznost(STUD<T1>& x, STUD<T2>& y)
+//{
+//	int k = 0;
+//	bool b;
+//	cout << endl << "---------------RAZNOST-----------" << endl << endl;
+//	for (int i = 0; i < x.GetCount(); i++)
+//	{
+//		…
+//			for (int j = 0; j < y.GetCount(); j++)
+//				if (x[i] == y[j]) b = 0; //(2)
+//		if (b)
+//		{
+//			M[k].Prisv(x[i]); //(33)
+//			…
+//		}
+//	}
+//	count = k;
+//
 //}

@@ -23,6 +23,8 @@ public:
 	friend ostream& operator << (ostream&, TakeBooks&);	// method of insert, operator overload << like friendly functions
 	TakeBooks& operator = (const TakeBooks&);
 	friend bool operator == (const TakeBooks, const TakeBooks);
+	friend bool operator < (const TakeBooks, int );
+	friend bool operator > (const TakeBooks, int );
 };
 
 struct ReturnBooks		// Container2 «Читатели, вернувшие все книги»)
@@ -35,6 +37,8 @@ public:
 	friend ostream& operator << (ostream&, ReturnBooks&);	// method of insert, operator overload << like friendly functions
 	ReturnBooks& operator = (const ReturnBooks&);
 	friend bool operator == (const ReturnBooks, const ReturnBooks);
+	friend bool operator < (const ReturnBooks, const ReturnBooks);
+	friend bool operator > (const ReturnBooks, const ReturnBooks);
 };
 
 struct NotReturnBooks	// Container3 «Студенты, не сдавшие книги».
@@ -235,6 +239,38 @@ public:
 	{
 		return M[index];
 	}
+
+	void Sort()
+	{
+		cout << endl << "----------------------Sorsing massive conteiner------------------------------" << endl << endl;
+		T t;
+		for (int i = 0; i < count; i++)
+			for (int j = i + 1; j < count; j++)
+			{
+				if (M[i] > M[j])
+				{
+					t = M[i];
+					M[i] = M[j];
+					M[j] = t;
+				}
+			}
+	}
+	void Search()
+	{
+		cout << "\nSearching for studends\n";
+		int k = 0;
+		cout << "Enter the number of books: "; cin >> k;
+		cout << "\nSearching for studends, who take more then " << k <<" books" <<  endl << endl;
+		int i = 0;
+		while (i < count)
+		{
+			if (M[i] > k)
+				cout << M[i] << endl;
+			i++;
+		}
+
+	}
+
 
 	//friend ostream& operator << (ostream& os, Student& r)	// method of insert, operator overload << like friendly functions
 	//{

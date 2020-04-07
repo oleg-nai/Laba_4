@@ -27,6 +27,26 @@
 
 int main(void)
 {
+	// Search - only for container1 - TakeBooks
+	// Sort	  - only for container2 - ReturnBooks
+
+
+	Student<TakeBooks> secondCourse;
+	secondCourse.InputTextData("TakeBooksInput.txt");
+	secondCourse.OutputTextConsole();
+	secondCourse.OutputTextFile("TakeBooksOutput.txt");
+	secondCourse.Search();
+
+
+
+	Student<ReturnBooks> thirdCourse;
+	thirdCourse.InputTextData("ReturnBooksInput.txt");
+	thirdCourse.OutputTextConsole();
+	thirdCourse.OutputTextFile("ReturnBooksOutput.txt");
+	thirdCourse.Sort(); 
+	thirdCourse.OutputTextConsole();
+
+
 
 	Student<NotReturnBooks> firstCourse, testCourse;
 	firstCourse.InputTextData("NotReturnBooksInput.txt");
@@ -35,18 +55,10 @@ int main(void)
 	firstCourse.OutputBinaryData("NotReturnBooksOutputBinaryData.txt");
 	testCourse = firstCourse;
 	cout << "This is check for operator =\n";
-	testCourse.OutputTextConsole();
-	cout << testCourse[1];
+	//testCourse.OutputTextConsole();
+	//cout << testCourse[1];
 
-	Student<TakeBooks> secondCourse;
-	secondCourse.InputTextData("TakeBooksInput.txt");
-	secondCourse.OutputTextConsole();
-	secondCourse.OutputTextFile("TakeBooksOutput.txt");
-
-	Student<ReturnBooks> thirdCourse;
-	thirdCourse.InputTextData("ReturnBooksInput.txt");
-	thirdCourse.OutputTextConsole();
-	secondCourse.OutputTextFile("ReturnBooksOutput.txt");
+	
 
 	return 0;
 
