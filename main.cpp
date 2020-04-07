@@ -32,6 +32,8 @@ int main(void)
 	firstCourse.InputTextData("NotReturnBooksInput.txt");
 	firstCourse.OutputTextConsole();
 	firstCourse.OutputTextFile("NotReturnBooksOutput.txt");
+	firstCourse.OutputBinaryData("NotReturnBooksOutputBinaryData.txt");
+
 
 	Student<TakeBooks> secondCourse;
 	secondCourse.InputTextData("TakeBooksInput.txt");
