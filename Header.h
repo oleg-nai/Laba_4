@@ -2,11 +2,6 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <stdio.h>
-#include <stdlib.h> 
-#include <search.h>
-#include <string>
-#include <cstring>
 
 #define _CRT_SECURE_NO_WARNINGS
 #pragma warning(disable:4996)
@@ -54,29 +49,53 @@ public:
 	NotReturnBooks& operator = (const NotReturnBooks&);
 	friend bool operator == (const NotReturnBooks, const TakeBooks);
 	friend bool operator != (const NotReturnBooks, const ReturnBooks);
-
-
 };
 
+
+
+// search function (Х, st);  функция-шаблон, 
+// function - template
 template<class T>
 void Search(T& r)
 {
+	bool NONE = true;
+	bool rightNumber = false;
 	cout << "\nSearching for studends\n";
 	int k = 0;
-	cout << "Enter the number of books: ";
-	cin >> k;
+	do
+	{
+		try
+		{
+			cout << "Enter the number of books: ";
+			cin >> k;
+			if (cin.fail())
+				throw "\tYou've written wrong number/symbol, try again";
+			cout << "\n";
+			rightNumber = true;
+		}
+		catch (const char* ex)
+		{
+			cout << ex << endl;
+			cin.clear();			// return cin to 'normal' mode
+			cin.ignore(32767, '\n');// delete the values of the previous input from the input buffer
+		}
+	} while (rightNumber != true);
+
 	cout << "\nSearching for studends, who have more then " << k << " books" << endl << endl;
 	int i = 0;
 	while (i < r.count)
 	{
 		if (r.M[i] > k)
+		{ 
+			NONE = false;
 			cout << r.M[i] << endl;
+		}
 		i++;
 	}
+	if (NONE == true)
+		cout << "NONE\n";
+	cout << "--------------------------------------------------------------------------------------" << endl << endl;
 };
-	
-
-
 
 template<class T>
 class Student
@@ -94,6 +113,13 @@ public:
 	{
 		delete[] M;	count = 0;
 	}
+
+	//friend ostream& operator << (ostream&, Student&)	// method of insert, operator overload << like friendly functions
+	//{
+	//}
+	//friend istream& operator >> (istream&, Student&)	// method of insert, operator overload >> like friendly functions
+	//{
+	//}
 
 	void OutputBinaryData(string path)	// output in binary text file (вывод в бинарный поток (файл) массива данных)
 	{
@@ -259,9 +285,10 @@ public:
 		return M[index];
 	}
 
-	void Sort()
+	//  X.Sortfunction3();//какой контейнер X (М, К, R)  - указано в индивидуальном варианте
+	void Sort()	
 	{
-		cout << endl << "----------------------Sorsing massive conteiner------------------------------" << endl << endl;
+		cout << endl << "----------------------Sorsing massive conteiner by address------------------------------" << endl << endl;
 		T t;
 		for (int i = 0; i < count; i++)
 			for (int j = i + 1; j < count; j++)
@@ -275,21 +302,6 @@ public:
 			}
 	}
 	
-	//void Search()
-	//{
-	//	cout << "\nSearching for studends\n";
-	//	int k = 0;
-	//	cout << "Enter the number of books: "; cin >> k;
-	//	cout << "\nSearching for studends, who take more then " << k <<" books" <<  endl << endl;
-	//	int i = 0;
-	//	while (i < count)
-	//	{
-	//		if (M[i] > k)
-	//			cout << M[i] << endl;
-	//		i++;
-	//	}
-	//}
-
 	// R.function(K,M); //Функция внутри класса-шаблона 
 	template<class T1, class T2>
 	void Cheaker(const Student<T1>& a, const Student<T2>&b)	// a - Container1(TakeBooks), b - Container2(ReturnBooks), NotReturnBooks = TakeBooks, NotReturnBooks != ReturnBooks 
