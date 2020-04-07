@@ -1,0 +1,14 @@
+number of class objects: 4
+name:	 Oleg
+address: zxcvb
+
+name:	 Kirill
+address: qwerty
+
+name:	 Maxim
+address: asdfgh
+
+name:	 Andrey
+address: lkjhv
+
+--------------------------------------------------------------------------------------

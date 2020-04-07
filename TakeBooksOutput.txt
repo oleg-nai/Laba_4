@@ -1,0 +1,18 @@
+number of class objects: 4
+name:	 Olegaa
+address: Pr-gaz-Pravda
+count:	 4444
+
+name:	 Kirill
+address: Lenina-street
+count:	 9999
+
+name:	 Maxim
+address: yli4a-Golubeva
+count:	 2222
+
+name:	 Andrey
+address: Grove-streev
+count:	 1111
+
+--------------------------------------------------------------------------------------

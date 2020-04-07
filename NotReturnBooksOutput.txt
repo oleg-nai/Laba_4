@@ -1,0 +1,22 @@
+number of class objects: 4
+name:	 Oleg
+address: Pr-gaz-Pravda
+count:	 512502
+price:	53.2341
+
+name:	 Kirill
+address: Lenina-street
+count:	 2141
+price:	5.513
+
+name:	 Maxim
+address: yli4a-Golubeva
+count:	 412513
+price:	8.15436
+
+name:	 Andrey
+address: Grove-streev
+count:	 220141
+price:	2358.24
+
+--------------------------------------------------------------------------------------
