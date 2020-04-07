@@ -1,4 +1,4 @@
-#include "Header.h"
+#include "JustToCheckHeader.h"
 
 // --------------------------------------------------------------------------------------
 //										TakeBooks
@@ -6,34 +6,38 @@
 
 istream& operator >> (istream& os, TakeBooks& A)	// method of insert, operator overload >> like friendly functions	
 {
-	cin.ignore();
-	cout << "name:\t ";		cin.getline(A.name, 50);
-	cout << "address: ";	cin.getline(A.address, 50);
-	do
-	{
-		try
-		{
-			cout << "count:\t ";	cin >> A.count;
-			if (cin.fail())
-				throw "\tYou've written wrong number/symbol, try again";
-			cout << "\n";
-			return os;
-		}
-		catch (const char* ex)
-		{
-			cout << ex << endl;
-			cin.clear();			// return cin to 'normal' mode
-			cin.ignore(32767, '\n');// delete the values of the previous input from the input buffer
-		}
-	} while (true);
+	os >> A.name;
+	os >> A.address;
+	os >> A.count;
+	return os;
+	//cin.ignore();
+	//cout << "name:\t ";		cin.getline(A.name, 50);
+	//cout << "address: ";	cin.getline(A.address, 50);
+	//do
+	//{
+	//	try
+	//	{
+	//		cout << "count:\t ";	cin >> A.count;
+	//		if (cin.fail())
+	//			throw "\tYou've written wrong number/symbol, try again";
+	//		cout << "\n";
+	//		return os;
+	//	}
+	//	catch (const char* ex)
+	//	{
+	//		cout << ex << endl;
+	//		cin.clear();			// return cin to 'normal' mode
+	//		cin.ignore(32767, '\n');// delete the values of the previous input from the input buffer
+	//	}
+	//} while (true);
 }
 
 ostream& operator << (ostream& os, TakeBooks& A)	// method of insert, operator overload >> like friendly functions	
 {
-	cout << "name:\t "		<< A.name		<< endl;
-	cout << "address: "		<< A.address	<< endl;
-	cout << "count:\t "		<< A.count		<< endl;
-
+	cout << "name:\t " << A.name << endl;
+	cout << "address: " << A.address << endl;
+	cout << "count:\t " << A.count << endl;
+	return os;
 	//ofstream out; // stream for recording
 	//out.open("TakeBooks.txt", ios::app); // open file for recording
 	//if (out.is_open() != true)
@@ -46,7 +50,6 @@ ostream& operator << (ostream& os, TakeBooks& A)	// method of insert, operator o
 	//out << "count:\t " << A.count << endl;
 	//out.close(); 
 	//cout << "Record was successful!\n\n";
-	return os;
 }
 
 TakeBooks& TakeBooks::operator = (const TakeBooks& r)
@@ -71,17 +74,22 @@ bool operator == (const TakeBooks a, const TakeBooks r)
 
 istream& operator >> (istream& os, ReturnBooks& A)	// method of insert, operator overload >> like friendly functions	
 {
+	os >> A.name;
+	os >> A.address;
+	return os;
+	/*
 	cout << "name:\t ";		cin.getline(A.name, 50);
 	cout << "address: ";	cin.getline(A.address, 50);
 	cout << "\n";
 	return os;
+	*/
 }
 
 ostream& operator << (ostream& os, ReturnBooks& A)	// method of insert, operator overload >> like friendly functions	
 {
 	cout << "name:\t " << A.name << endl;
 	cout << "address: " << A.address << endl;
-
+	return os;
 	//ofstream out; // stream for recording
 	//out.open("ReturnBooks.txt", ios::app); // open file for recording
 	//if (out.is_open() != true)
@@ -91,11 +99,8 @@ ostream& operator << (ostream& os, ReturnBooks& A)	// method of insert, operator
 	//}
 	//out << "name:\t " << A.name << endl;
 	//out << "address: " << A.address << endl;
-
 	//out.close();
 	//cout << "Record was successful!\n\n";
-
-	return os;
 }
 
 ReturnBooks& ReturnBooks::operator = (const ReturnBooks& r)
@@ -119,45 +124,49 @@ bool operator == (const ReturnBooks a, const ReturnBooks r)
 
 istream& operator >> (istream& os, NotReturnBooks& A)	// method of insert, operator overload >> like friendly functions	
 {
-	cin.ignore();
-	cout << "name:\t ";		cin.getline(A.name, 50);
-	cout << "address: ";	cin.getline(A.address, 50);
-	bool repeat = false;
-	do
-	{
-		try
-		{
-			cout << "count:\t ";	cin >> A.count;
-			if (cin.fail())
-				throw "\nYou've written wrong number/symbol, try again";
-			repeat = false;
-		}
-		catch (const char* ex)
-		{
-			repeat = true;
-			cout << ex << endl;
-			cin.clear();			// return cin to 'normal' mode
-			cin.ignore(32767, '\n');// delete the values of the previous input from the input buffer
-		}
-	} while (repeat == true);
-
-	do
-	{
-		try
-		{
-			cout << "price:\t ";	cin >> A.price;
-			if (cin.fail())
-				throw "\tYou've written wrong number/symbol, try again";
-			cout << "\n";
-			return os;
-		}
-		catch (const char* ex)
-		{
-			cout << ex << endl;
-			cin.clear();			// return cin to 'normal' mode
-			cin.ignore(32767, '\n');// delete the values of the previous input from the input buffer
-		}
-	} while (true);
+	os >> A.name;
+	os >> A.address;
+	os >> A.count;
+	os >> A.price;
+	return os;
+	//cin.ignore();
+	//cout << "name:\t ";		cin.getline(A.name, 50);
+	//cout << "address: ";	cin.getline(A.address, 50);
+	//bool repeat = false;
+	//do
+	//{
+	//	try
+	//	{
+	//		cout << "count:\t ";	cin >> A.count;
+	//		if (cin.fail())
+	//			throw "\nYou've written wrong number/symbol, try again";
+	//		repeat = false;
+	//	}
+	//	catch (const char* ex)
+	//	{
+	//		repeat = true;
+	//		cout << ex << endl;
+	//		cin.clear();			// return cin to 'normal' mode
+	//		cin.ignore(32767, '\n');// delete the values of the previous input from the input buffer
+	//	}
+	//} while (repeat == true);
+	//do
+	//{
+	//	try
+	//	{
+	//		cout << "price:\t ";	cin >> A.price;
+	//		if (cin.fail())
+	//			throw "\tYou've written wrong number/symbol, try again";
+	//		cout << "\n";
+	//		return os;
+	//	}
+	//	catch (const char* ex)
+	//	{
+	//		cout << ex << endl;
+	//		cin.clear();			// return cin to 'normal' mode
+	//		cin.ignore(32767, '\n');// delete the values of the previous input from the input buffer
+	//	}
+	//} while (true);
 }
 
 ostream& operator << (ostream& os, NotReturnBooks& A)	// method of insert, operator overload >> like friendly functions	
@@ -166,7 +175,7 @@ ostream& operator << (ostream& os, NotReturnBooks& A)	// method of insert, opera
 	cout << "address: " << A.address << endl;
 	cout << "count:\t " << A.count << endl;
 	cout << "price:\t" << A.price << endl;
-
+	return os;
 	//ofstream out; // stream for recording
 	//out.open("NotReturnBooks.txt", ios::app); // open file for recording
 	//if (out.is_open() != true)
@@ -178,11 +187,8 @@ ostream& operator << (ostream& os, NotReturnBooks& A)	// method of insert, opera
 	//out << "address: " << A.address << endl;
 	//out << "count:\t " << A.count << endl;
 	//out << "price:\t" << A.price << endl;
-
 	//out.close();
 	//cout << "Record was successful!\n\n";
-
-	return os;
 }
 
 NotReturnBooks& NotReturnBooks::operator = (const NotReturnBooks& r)
@@ -229,29 +235,8 @@ void Student<T>::OutputDataBinary(char* path)
 	}
 }
 
-//template<class T>
-//void Student<T>::OutputTextData(char* s) // output in text file
-//{
-//	fstream out;
-//	out.open(s, ofstream::out);
-//	if (!out.is_open())
-//	{
-//		cout << "Open file failed.\n";
-//	}
-//	else
-//	{
-//		int i = 0;
-//		while (i < count)
-//		{
-//			out << M[i];
-//			i++;
-//		}
-//		out.close();
-//	}
-//}
-
 template<class T>
-void Student<T>::InputBinaryData(char*path)
+void Student<T>::InputBinaryData(char* path)
 {
 	fstream in;
 	in.open(path, ofstream::in | ofstream::binary);
