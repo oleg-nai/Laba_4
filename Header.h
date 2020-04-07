@@ -77,15 +77,15 @@ public:
 	void InputBinaryData(char*);	// input from binary file
 	void OutputTextData(void)		// output in text file (вывод на консоль массива данных перегрузка оператора)
 	{
-		int i = count;
-		while (i > 0)
+		cout << "number of class objects: " << count << endl;
+		int i = count -1;
+		while (i != -1)
 		{
 			cout << M[i] << endl;
 			i--;
 		}
-		cout << "number of class objects: " << count << endl;
+		printf("--------------------------------------------------------------------------------------\n");
 	}
-
 
 	void InputTextData(string path)	// input from text stream (ввод из текстового потока)
 	{
@@ -94,19 +94,18 @@ public:
 		if (!in.is_open())
 		{
 			cout << "Open file failed.\n";
-
 		}
 		else
 		{
 			M = new T[100];
 			int i = 0;
-
+			in.seekg(0, ios::beg);
 			while (!in.eof())
 			{
 				in >> M[i];
 				i++;
 			}
-			count = i - 1;
+			count = i;
 			in.close();
 		}
 		/*

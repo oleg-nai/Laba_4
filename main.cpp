@@ -1,4 +1,4 @@
-﻿#include "JustToCheckHeader.h"
+﻿#include "Header.h"
 
 /*
 // --------------------------------------------------------------------------------------
@@ -30,12 +30,16 @@ int main(void)
 
 	Student<NotReturnBooks> firstCourse;
 	firstCourse.InputTextData("NotReturnBooks.txt");
+	firstCourse.OutputTextData();
+
 
 	Student<TakeBooks> secondCourse;
 	secondCourse.InputTextData("TakeBooks.txt");
+	secondCourse.OutputTextData();
 
 	Student<ReturnBooks> thirdCourse;
 	thirdCourse.InputTextData("ReturnBooks.txt");
+	thirdCourse.OutputTextData();
 
 	return 0;
 
